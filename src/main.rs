@@ -17,10 +17,17 @@ use tilemap::TileMapPlugin;
 
 use debug::DebugPlugin;
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Copy)]
+pub enum GameState {
+    Overworld,
+    Combat,
+}
+
 fn main() {
     let height = 900.0;
 
     App::new()
+        .add_state(GameState::Overworld)
         .insert_resource(ClearColor(CLEAR))
         .insert_resource(WindowDescriptor {
             width: height * RESOLUTION,

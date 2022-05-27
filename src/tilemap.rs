@@ -15,6 +15,9 @@ pub struct TileMapPlugin;
 #[derive(Component)]
 pub struct TileCollider;
 
+#[derive(Component)]
+pub struct EncounterSpawner;
+
 impl Plugin for TileMapPlugin {
     fn build(&self, app: &mut App) {
         app.add_startup_system(create_simple_map);
@@ -39,6 +42,10 @@ fn create_simple_map(mut commands: Commands, ascii: Res<AsciiSheet>) {
 
                 if char == '#' {
                     commands.entity(tile).insert(TileCollider);
+                }
+
+                if char == '~' {
+                    commands.entity(tile).insert(EncounterSpawner);
                 }
 
                 tiles.push(tile);
